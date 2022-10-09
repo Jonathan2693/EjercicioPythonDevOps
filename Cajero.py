@@ -1,3 +1,5 @@
+from datetime import datetime
+
 print('Cajero Automático')
 print('*******************************')
 
@@ -35,7 +37,7 @@ while(salir==False):
         continue
     if opcion==1:
         print(f"El saldo actual es {saldo}")
-        historico += 'Ha consultado su saldo (opción 1)\n'
+        historico += f"{datetime.now()} - Accion : Ha consultado su saldo - Saldo Actual = {saldo}mxn\n"
     elif opcion==2:
         if saldo!=0:
             try:
@@ -44,8 +46,10 @@ while(salir==False):
                     print('El saldo es insuficiente para retirarlo')
                 else:
                     saldo = saldo - saldoRetirar
+                    if saldo==0:
+                        print('El saldo actual ya es 0, no podra retirar nuevamente')
                     print(f"Se ha retirado {saldoRetirar} mxn de la cuenta")
-                historico += 'Ha elegido retirar de su cuenta (opción 2)\n'
+                historico += f"{datetime.now()} - Accion : Ha retirado dinero - Saldo Actual= {saldo}mxn\n"
             except ValueError:
                 print('La cantidad ingresada no es valida')
                 continue
