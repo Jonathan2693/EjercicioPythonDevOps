@@ -37,17 +37,20 @@ while(salir==False):
         print(f"El saldo actual es {saldo}")
         historico += 'Ha consultado su saldo (opción 1)\n'
     elif opcion==2:
-        try:
-            saldoRetirar = int(input('Ingresa la cantidad a retirar: '))
-            if (saldo - saldoRetirar)<0:
-                print('El saldo es insuficiente para retirarlo')
-            else:
-                saldo = saldo - saldoRetirar
-                print(f"Se ha retirado {saldoRetirar} mxn de la cuenta")
-            historico += 'Ha elegido retirar de su cuenta (opción 2)\n'
-        except ValueError:
-            print('La cantidad ingresada no es valida')
-            continue
+        if saldo!=0:
+            try:
+                saldoRetirar = int(input('Ingresa la cantidad a retirar: '))
+                if (saldo - saldoRetirar)<0:
+                    print('El saldo es insuficiente para retirarlo')
+                else:
+                    saldo = saldo - saldoRetirar
+                    print(f"Se ha retirado {saldoRetirar} mxn de la cuenta")
+                historico += 'Ha elegido retirar de su cuenta (opción 2)\n'
+            except ValueError:
+                print('La cantidad ingresada no es valida')
+                continue
+        else:
+            print('El saldo es 0, ya no puede retirarse dinero')
     elif opcion==3:
         print('Este es el histórico de movimientos :')
         print(f"{historico}")
