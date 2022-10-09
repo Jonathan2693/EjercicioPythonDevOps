@@ -38,11 +38,29 @@ while(salir==False):
     if opcion==1:
         print(f"El saldo actual es {saldo}")
         historico += f"{datetime.now()} - Accion : Ha consultado su saldo - Saldo Actual = {saldo}mxn\n"
+        print(' 1. Regresar al menú principal')
+        print(' 2. Salir')
+        try:
+            opcion = int(input('Eliga una opcion para continuar: '))
+            if opcion==1:
+                continue
+            elif opcion==2:
+                salir = True
+                print('Saliendo de la aplicacion')
+        except ValueError:
+            print('La opcion ingresada no es válida')
+            continue
     elif opcion==2:
         if saldo!=0:
             try:
-                saldoRetirar = int(input('Ingresa la cantidad a retirar: '))
-                if (saldo - saldoRetirar)<0:
+                print(' 1. Regresar al menú principal')
+                print(' 2. Salir')
+                saldoRetirar = int(input('ó Ingresa la cantidad a retirar: '))
+                if saldoRetirar==1:
+                    continue
+                elif saldoRetirar==2:
+                    salir = True
+                elif (saldoRetirar!=1) & (saldoRetirar!=2) & ((saldo - saldoRetirar)<0):
                     print('El saldo es insuficiente para retirarlo')
                 else:
                     saldo = saldo - saldoRetirar
@@ -51,13 +69,24 @@ while(salir==False):
                     print(f"Se ha retirado {saldoRetirar} mxn de la cuenta")
                 historico += f"{datetime.now()} - Accion : Ha retirado dinero - Saldo Actual= {saldo}mxn\n"
             except ValueError:
-                print('La cantidad ingresada no es valida')
+                print('La valor ingresado no es valido')
                 continue
         else:
             print('El saldo es 0, ya no puede retirarse dinero')
     elif opcion==3:
         print('Este es el histórico de movimientos :')
         print(f"{historico}")
+        try:
+            print(' 1. Regresar al menú principal')
+            print(' 2. Salir')
+            opcion = int(input('Ingrese la opción deseada: '))
+            if opcion==2:
+                salir = False
+            else:
+                continue
+        except ValueError:
+                print('La valor ingresado no es valido')
+                continue
     elif opcion==4:
         print('Saliendo de la aplicación...')
         salir = True
