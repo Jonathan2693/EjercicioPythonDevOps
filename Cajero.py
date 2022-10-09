@@ -66,8 +66,9 @@ while(salir==False):
                     saldo = saldo - saldoRetirar
                     if saldo==0:
                         print('El saldo actual ya es 0, no podra retirar nuevamente')
-                    print(f"Se ha retirado {saldoRetirar} mxn de la cuenta")
-                historico += f"{datetime.now()} - Accion : Ha retirado dinero - Saldo Actual= {saldo}mxn\n"
+                    else:
+                        print(f"Se ha retirado {saldoRetirar} mxn de la cuenta")
+                        historico += f"{datetime.now()} - Accion : Ha retirado dinero - Saldo Actual= {saldo}mxn\n"
             except ValueError:
                 print('La valor ingresado no es valido')
                 continue
@@ -81,9 +82,11 @@ while(salir==False):
             print(' 2. Salir')
             opcion = int(input('Ingrese la opción deseada: '))
             if opcion==2:
-                salir = False
-            else:
+                salir = True
+            elif opcion==1:
                 continue
+            else:
+                print('El valor ingresado no es válido')
         except ValueError:
                 print('La valor ingresado no es valido')
                 continue
